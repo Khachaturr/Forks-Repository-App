@@ -9,10 +9,16 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { InputComponent } from './input/input.component';
+import { SearchRezultScreenComponent } from './search-rezult-screen/search-rezult-screen.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    InputComponent,
+    SearchRezultScreenComponent
   ],
   imports: [
     BrowserModule,
