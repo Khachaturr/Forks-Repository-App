@@ -11,14 +11,14 @@ import { AppEffects } from './app.effects';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { InputComponent } from './input/input.component';
-import { SearchRezultScreenComponent } from './search-rezult-screen/search-rezult-screen.component';
+import { SearchResultScreenComponent } from './search-rezult-screen/search-rezult-screen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 
 const appRoutes:Routes= [
-  {path:'searchResultScreen', component:SearchRezultScreenComponent},
+  {path:'searchResultScreen/:owner/:repo', component:SearchResultScreenComponent},
   {path:'home', component:HomeComponent},
   {path:'', redirectTo:"home", pathMatch:"full"}
 ]
@@ -28,7 +28,7 @@ const appRoutes:Routes= [
     AppComponent,
     HomeComponent,
     InputComponent,
-    SearchRezultScreenComponent
+    SearchResultScreenComponent
   ],
   imports: [
     BrowserModule,

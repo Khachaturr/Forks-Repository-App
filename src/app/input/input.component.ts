@@ -24,8 +24,8 @@ export class InputComponent implements OnInit {
   repoSearch(): void {   
     this.checkingInputValue()
     if(this.inputValidorNor===true){
-      this.router.navigate(['./searchResultScreen'], {
-        queryParams: { repo: this.inputValue, page: 1 },
+      this.router.navigate([`./searchResultScreen/${this.inputValue}`], {
+        queryParams: { repo: 5, page: 1 },
         queryParamsHandling: 'merge'
       })
     }

@@ -1,0 +1,31 @@
+<div class="body">
+
+    <app-input class="inputSection"></app-input>
+
+    <div class="repoInformationSection">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FullName</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of usersHaveForks; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>                
+                        {{ user.fullNameRepo }}
+                    </td>
+                    <td>{{ user.owner  }}</td>
+                    <td>{{ user.urlRepo  }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <ngb-pagination [collectionSize]="100" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+    </div>
+
+</div>
