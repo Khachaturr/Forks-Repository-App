@@ -1,0 +1,31 @@
+.input{
+    width: 80%;
+    min-width: 200px;
+    
+
+}
+
+.searchingSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+
+.shadow{
+    box-shadow: 2px 0 8px solid black;
+}
+
+.warningSection{
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    position: absolute;
+    top: 0px;
+    left: 50%-10%;
+}

@@ -1,1 +1,11 @@
-<p>input works!</p>
+<div class='warningSection' *ngIf='!inputValidorNor'>
+    <h3>Required</h3>
+ </div>
+ 
+ <div class='searchingSection'>
+    
+    <input #input class="input btn btn-light shadow" type="text" placeholder="owner/repositoryName" [(ngModel)]='inputValue'>
+ 
+    <button type="button " class="btn btn-light shadow" (click)="repoSearch()">Search</button>
+ 
+ </div>

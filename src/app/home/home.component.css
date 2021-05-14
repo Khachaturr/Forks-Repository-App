@@ -1,0 +1,32 @@
+.body{
+    display: flex;
+    justify-content: center;
+}
+
+.header{
+    background-color: yellow;
+    width: 30%;
+    min-width: 200px;
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%-30%;
+    top:100px;
+    padding: 2rem;
+    border-radius: 20px;   
+
+}
+
+.header div p{
+    text-align: center;
+}
+
+.inputsection{
+    position: absolute;
+    top:300px;
+    display: flex;
+    justify-content: center;
+    width:80%
+}
