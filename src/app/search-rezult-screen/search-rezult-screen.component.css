@@ -12,6 +12,17 @@
 
 }
 .repoInformationSection{
-    width: 80%;
+    
+    max-width: 80%;
+    display: flex;
+    justify-content: center;
 }
+
+.table{
+   max-width: 500px;
+   font-size: smaller;
+   
+   
+}
+
 

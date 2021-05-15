@@ -2,7 +2,7 @@
 
     <app-input class="inputSection"></app-input>
 
-    <div class="repoInformationSection">
+    <div class="repoInformationSection" *ngIf='isShowrepoInformationSection; else imageContent'>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -14,20 +14,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let repo of usersHaveForks; index as i">
+                <tr *ngFor="let repo  of repoHaveForks; index as i">
                     <th scope="row">{{ i + 1 }}</th>
-                    <td>                
+                    <td>
                         {{ repo.fullNameRepo }}
                     </td>
-                    <td>{{repo.owner  }}</td>
-                    <td>{{ repo.urlRepo  }}</td>
-                    <td><ngb-rating [(rate)]='repo.favorit' (rateChange)='seveFavoritRepo(repo)'></ngb-rating></td>
+                    <td>{{repo.owner }}</td>
+                    <td>{{ repo.urlRepo }}</td>
+                    <td>
+                        <ngb-rating [(rate)]='repo.favorit' (rateChange)='seveFavoritRepo(repo)'></ngb-rating>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div>
-        <ngb-pagination [collectionSize]="20" maxSize='10' [(page)]="page" pageSize ='1' (pageChange)="addPageinUrl()" aria-label="Default pagination"></ngb-pagination>
+
+    <ng-template #imageContent>
+        <img src="https://thumbs.dreamstime.com/t/%D0%BA%D1%82%D0%BE-%D0%B7%D0%B0%D0%B1%D0%BE%D1%82%D0%B8%D1%82-%D1%81%D0%BC%D0%B0%D0%B9-%D0%B8%D0%BA-42424037.jpg"
+            alt="smailik">
+    </ng-template>
+    <div *ngIf="isShowrepoInformationSection">
+        <ngb-pagination [collectionSize]="20" maxSize='10' [(page)]="page" pageSize='1' (pageChange)="addParaminUrl()"
+            aria-label="Default pagination"></ngb-pagination>
     </div>
 
 </div>

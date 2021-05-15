@@ -16,7 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 const appRoutes:Routes= [
@@ -30,7 +31,8 @@ const appRoutes:Routes= [
     AppComponent,
     HomeComponent,
     InputComponent,
-    SearchResultScreenComponent
+    SearchResultScreenComponent,
+    
   ],
   imports: [
     BrowserModule,

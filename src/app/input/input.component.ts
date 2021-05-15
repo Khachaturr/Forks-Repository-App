@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCurrentRoute, selectQueryParam } from '../reducers/selector';
@@ -12,15 +12,15 @@ import { selectCurrentRoute, selectQueryParam } from '../reducers/selector';
   styleUrls: ['./input.component.css']
 })
 
-export class InputComponent implements OnInit {
+export class InputComponent implements OnInit, OnDestroy {
   inputValue: string;
   inputValidorNot: boolean = true;
 
   urlParam$ = this.store.select(selectCurrentRoute).subscribe(
     (data) => {
-      this.inputValue = data.params.owner + '/' + data.params.repo
-      // console.log(data.queryParams)
-      
+      if (data.params.owner != undefined && data.params.repo != undefined) {
+        this.inputValue = data.params.owner + '/' + data.params.repo
+      }
     })
 
 
@@ -48,6 +48,9 @@ export class InputComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+  ngOnDestroy(){
+    this.urlParam$.unsubscribe()
   }
 
 }

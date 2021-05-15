@@ -9,7 +9,7 @@ import { animat } from './animation';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [
-    animat,    
+    animat,
   ]
 })
 

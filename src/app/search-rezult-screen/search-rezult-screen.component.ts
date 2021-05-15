@@ -1,8 +1,9 @@
-import { RequestService, User } from '../searchRezultScreen.service';
+import { RequestService, Repo } from '../searchRezultScreen.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectCurrentRoute, selectQueryParam } from '../reducers/selector';
+import { Subject } from 'rxjs';
 
 
 
@@ -14,45 +15,48 @@ import { selectCurrentRoute, selectQueryParam } from '../reducers/selector';
 })
 
 
-export class SearchResultScreenComponent implements OnInit {
-  usersHaveForks:User[] = [];
-  
-  currentRate:number;
- 
+export class SearchResultScreenComponent implements OnInit, OnDestroy {
+  repoHaveForks: Repo[] = [];
+  currentRate: number;
   page: number = 1;
+  isShowrepoInformationSection: boolean = false
+
+  private ngUnsubscribe = new Subject()
 
   page$ = this.store.select(selectQueryParam('page')).subscribe(date => this.page = +date);
   request$ = this.store.select(selectCurrentRoute).subscribe((data) => {
-    this.searchRezultScreenService.getRequestInGitHum(data.params.owner, data.params.repo, data.queryParams.page)
-      .subscribe((data) => { this.usersHaveForks=[]; this.createUserArray(data);  })
+    this.searchRezultScreenService.sendRequestToGitHum(data.params.owner, data.params.repo, data.queryParams.page)
+      .subscribe((data) => { this.repoHaveForks = []; this.createRepoArray(data); this.isShowrepoInformationSection = true },
+        (error) => { alert('Nothing was found with the information you provided'); this.isShowrepoInformationSection = false })
   })
 
 
-  createUserArray(fullUserDataArr):void{
-    for(let userObj of fullUserDataArr ){
-      // console.log(userObj)
-      let user:User={
-        fullNameRepo:'',
+  createRepoArray(fullRepoDataArr): void {
+    for (let repoObj of fullRepoDataArr) {
+
+      let repozitaria: Repo = {
+        fullNameRepo: '',
         owner: '',
-        urlRepo:'',
-        favorit: 0
+        urlRepo: '',
+        favorit: NaN
       }
-      user.fullNameRepo=userObj.full_name;
-      user.owner=userObj.owner.login;
-      user.urlRepo=userObj.forks_url;
-      this.usersHaveForks.push(user);
+      repozitaria.fullNameRepo = repoObj.full_name;
+      repozitaria.owner = repoObj.owner.login;
+      repozitaria.urlRepo = repoObj.forks_url;
+      repozitaria.favorit = this.searchRezultScreenService.checkFavoritOrNot(repoObj.forks_url)
+      this.repoHaveForks.push(repozitaria);
     }
-    // console.log(this.usersHaveForks)
+
   }
+
+
 
   constructor(private route: Router, private activatedRoute: ActivatedRoute,
-    private store: Store, private searchRezultScreenService: RequestService, ) {
+    private store: Store, private searchRezultScreenService: RequestService,) {
 
   }
 
-  addPageinUrl() {
-    console.log(this.usersHaveForks)
-
+  addParaminUrl() {
     this.route.navigate([],
       {
         relativeTo: this.activatedRoute,
@@ -61,13 +65,21 @@ export class SearchResultScreenComponent implements OnInit {
       }
     )
   }
-seveFavoritRepo(repo){
-this.searchRezultScreenService.saveInLocalestorageFavorits(repo)
-}
 
+
+  seveFavoritRepo(repo: Repo) {
+    if (repo.favorit >= 0) {
+      this.searchRezultScreenService.saveInLocalestorageFavorits(repo)
+    }
+  }
 
 
   ngOnInit(): void {
+
+  }
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete()
 
   }
 
