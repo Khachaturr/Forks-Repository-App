@@ -15,6 +15,8 @@ import { SearchResultScreenComponent } from './search-rezult-screen/search-rezul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { HttpClientModule } from '@angular/common/http'
 
 
 const appRoutes:Routes= [
@@ -40,7 +42,9 @@ const appRoutes:Routes= [
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AppEffects]),
-    NgbModule
+    NgbModule,
+    StoreRouterConnectingModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

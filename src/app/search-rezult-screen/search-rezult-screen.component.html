@@ -10,22 +10,23 @@
                     <th scope="col">FullName</th>
                     <th scope="col">Owner</th>
                     <th scope="col">URL</th>
+                    <th scope="col">Favorits</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of usersHaveForks; index as i">
+                <tr *ngFor="let user of usersHaveForks[0]; index as i">
                     <th scope="row">{{ i + 1 }}</th>
                     <td>                
-                        {{ user.fullNameRepo }}
+                        {{ user.full_name }}
                     </td>
-                    <td>{{ user.owner  }}</td>
-                    <td>{{ user.urlRepo  }}</td>
+                    <td>{{user.owner.login  }}</td>
+                    <td>{{ user.forks_url  }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div>
-        <ngb-pagination [collectionSize]="100" [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+        <ngb-pagination [collectionSize]="20" maxSize='10' [(page)]="page" pageSize ='1' (pageChange)="addPageinUrl()" aria-label="Default pagination"></ngb-pagination>
     </div>
 
 </div>
