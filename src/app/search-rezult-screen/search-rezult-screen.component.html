@@ -2,7 +2,7 @@
 
     <app-input class="inputSection"></app-input>
 
-    <div class="repoInformationSection" *ngIf='isShowrepoInformationSection; else imageContent'>
+    <div class="repoInformationSection" *ngIf='isShowrepoInformationSection; else imageSection'>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -29,7 +29,7 @@
         </table>
     </div>
 
-    <ng-template #imageContent>
+    <ng-template #imageSection>
         <img src="https://thumbs.dreamstime.com/t/%D0%BA%D1%82%D0%BE-%D0%B7%D0%B0%D0%B1%D0%BE%D1%82%D0%B8%D1%82-%D1%81%D0%BC%D0%B0%D0%B9-%D0%B8%D0%BA-42424037.jpg"
             alt="smailik">
     </ng-template>

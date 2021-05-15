@@ -5,7 +5,7 @@
 <div class='searchingSection'>
 
    <input #input class="input btn btn-light shadow" type="text" placeholder="owner/repositoryName"
-      [(ngModel)]='inputValue'>
+      [(ngModel)]='inputValue' (keydown.enter)='repoSearch()'>
 
    <button type="button " class="btn btn-light shadow" (click)="repoSearch()">Search</button>
 
